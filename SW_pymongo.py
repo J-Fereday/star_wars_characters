@@ -21,6 +21,9 @@ def InsertingData(URL,server):
     data = getDatafromURL(URL)
     for item in data["results"]:
         db.starships.insert_one(item)
+        
+    if data["next"] is not None:
+        InsertingData(URL=data["next"],server=server)
 
 
 def updatingShips():
